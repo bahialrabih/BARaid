@@ -3,25 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+    <title>Blue Archive Raids</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome to My GitHub Pages Site</h1>
-        </header>
-        <main>
-            <p>This is a simple website hosted on GitHub Pages.</p>
-            <p>Click the button below to see JavaScript in action!</p>
-            <button id="demoButton">Click Me!</button>
-            <p id="result"></p>
-        </main>
-        <footer>
-            <p>Created with GitHub Pages - <span id="currentYear"></span></p>
-        </footer>
-    </div>
+  <div class="main-container">
+    <table id="raids-table" selected-server="" finished-loading="false">
+      <thead>
+        <tr class="sticky-header">
+          <th data-property-name="RaidName">Raid</th>
+          <th data-property-name="Type">Type</th>
+          <th data-property-name="Terrain">Terrain</th>
+          <th data-property-name="StartFormatted">Start</th>
+          <th data-property-name="EndFormatted">End</th>
+          <th data-property-name="DaysComesIn">Coming In days (JP)</th>
+          <th data-property-name="GlbDaysComesIn">Coming In days (Global)</th>
+          <th data-property-name="GLBStatus">Status (Global)</th>
+          <th data-property-name="Resources">Resources (shortcuts)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
     <script src="script.js"></script>
+    <footer>
+      <p>
+        <strong>Disclaimer:</strong><br>
+        This website is an unofficial fan project and is not affiliated with or endorsed by Nexon Games or SchaleDB. The data displayed is sourced from publicly accessible information on SchaleDB and is used for informational purposes only. All intellectual property rights belong to their respective owners. Please support the official game and developers.
+      </p>
+    </footer>
 </body>
 </html>
