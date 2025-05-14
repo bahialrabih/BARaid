@@ -29,6 +29,8 @@ const RESOURCES = [
 
 const DATA_URL = {
     raids: 'https://schaledb.com/data/en/raids.min.json',
+    TACoinIcon: 'https://schaledb.com/images/item/full/item_icon_raidcoin.webp',
+    GACoinIcon: 'https://schaledb.com/images/item/full/item_icon_eliminateraidcoin.webp',
 };
 
 const longDateFormatArgs = [
@@ -131,6 +133,8 @@ class Controller {
                 GLBStatus : undefined,
                 Type: type
             };
+            result.RaidNameWithIcon = createIconTextContainer(result.RaidName, result.RaidIconURL).outerHTML;
+            result.TypeWithIcon = createIconTextContainer(type, type === RAID_TYPES.GrandAssault ? DATA_URL.GACoinIcon : DATA_URL.TACoinIcon).outerHTML;
             result.Resources = genResourceInnerHtml(result);
             (() => {
                 if (this.server === SERVERS.GLB) {
@@ -218,4 +222,19 @@ function genResourceInnerHtml(season) {
         container.append(li);
     });
     return container.outerHTML;
+}
+
+function createIconTextContainer(text, iconUrl) {
+    const container = document.createElement('div');
+    container.className = 'icon-text-container';
+
+    const icon = document.createElement('img');
+    icon.src = iconUrl;
+    icon.alt = '...';
+    icon.classList.add('icon');
+    const iconText = document.createElement('span');
+    iconText.textContent = text;
+    container.append(icon);
+    container.append(iconText);
+    return container;
 }

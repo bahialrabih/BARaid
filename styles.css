@@ -84,11 +84,6 @@ td {
     font-size: larger;
     text-align: center;
 }
-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 30%;
-}
 .checkbox-container {
     display: flex;
     align-items: center;
@@ -326,6 +321,23 @@ td[data-property-name="Resources"] li {
 }
 [finished-loading="false"] {
     display: none;
+}
+.icon-text-container {
+    display: flex;
+    align-items: center; /* or flex-end, center, baseline, stretch */
+    gap: 0;
+}
+
+td[data-property-name="TypeWithIcon"] .icon-text-container img.icon {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+}
+td[data-property-name="RaidNameWithIcon"] .icon-text-container img.icon {
+    width: auto;
+    height: auto;
+    max-height: 70px; /* Prevent excessive height */
+    object-fit: cover; /* Crops image to fit dimensions */
 }
 footer {
     font-size: 0.9em;
