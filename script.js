@@ -43,9 +43,8 @@ const longDateFormatArgs = [
 ];
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const raidsData = await fetchData(DATA_URL.raids);
+    const raidsData = await fetchData(DATA_URL.raids, true);
     if (!raidsData) {
-        alert('Failed to load data.');
         return;
     }
     const ctrl = new Controller(raidsData, SERVERS.JP);
@@ -199,14 +198,22 @@ class Controller {
     }
 }
 
-async function fetchData(url) {
-    const response = await fetch(url);
-    if (!response.ok) {
-        console.error('Failed to fetch data from ', url, ':', response.statusText);
+async function fetchData(url, alertOnError = false) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return await response.json();
+    }
+    catch (error) {
+        const msg = `Error fetching data from ${url}: ${error}`;
+        console.error(msg);
+        if (alertOnError) {
+            alert(msg);
+        }
         return null;
     }
-    const data = await response.json();
-    return data;
 }
 
 function genResourceInnerHtml(season) {
