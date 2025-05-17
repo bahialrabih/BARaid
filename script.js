@@ -198,9 +198,22 @@ class Controller {
     }
 }
 
-async function fetchData(url, alertOnError = false) {
+/**
+ * Fetches JSON data from a given URL with optional error alerting and timeout.
+ *
+ * @async
+ * @function fetchData
+ * @param {string} url - The URL to fetch data from.
+ * @param {boolean} [alertOnError=false] - Whether to show an alert on error.
+ * @param {number} [timeout=15000] - Timeout in milliseconds before aborting the request.
+ * @returns {Promise<Object|null>} The parsed JSON response, or null if an error occurred.
+ */
+async function fetchData(url, alertOnError = false, timeout = 15000) {
     try {
-        const response = await fetch(url);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeout);
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -216,6 +229,12 @@ async function fetchData(url, alertOnError = false) {
     }
 }
 
+/**
+ * Generates an HTML string representing a list of resource links for a given season.
+ *
+ * @param {string|number} season - The season identifier used to construct resource URLs.
+ * @returns {string} The outer HTML of a <ul> element containing <li> elements with resource links.
+ */
 function genResourceInnerHtml(season) {
     const container = document.createElement('ul');
     RESOURCES.forEach(resource => {
@@ -231,6 +250,13 @@ function genResourceInnerHtml(season) {
     return container.outerHTML;
 }
 
+/**
+ * Creates a container element with an icon and accompanying text.
+ *
+ * @param {string} text - The text to display next to the icon.
+ * @param {string} iconUrl - The URL of the icon image.
+ * @returns {HTMLDivElement} A div element containing the icon and text.
+ */
 function createIconTextContainer(text, iconUrl) {
     const container = document.createElement('div');
     container.className = 'icon-text-container';
