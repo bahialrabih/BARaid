@@ -6,6 +6,8 @@ body {
     overflow-y: auto;
     margin: 0;
     padding: 0;
+    height: 100%;
+    width: 100%;
 }
 *,
 *::before,
@@ -42,11 +44,10 @@ td {
 .sticky-header th {
     position: sticky;
     top: -1px;
-    background-color: #121212;
+    background-color: #000;
     /* Match the background color of the table */
     z-index: 99;
     border: 1px solid white;
-    color: white;
 }
 td[data-property-name="Resources"] li {
     text-align: left;
