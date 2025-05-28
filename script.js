@@ -64,13 +64,42 @@ const longDateFormatArgs = [
  * Main entry point: fetches data and initializes the controller.
  */
 document.addEventListener('DOMContentLoaded', async () => {
-    const raidsData = await fetchData(DATA_URL.raids, true);
-    if (!raidsData) return;
-    const ctrl = new Controller(raidsData, SERVERS.JP);
-    ctrl.constructRaidsTable();
-    highlightNextGLBRaid();
+    const loadingScreen = document.getElementById('loading-screen');
+
+    try {
+        const raidsData = await fetchData(DATA_URL.raids, true);
+        if (!raidsData) {
+            hideLoadingScreen(loadingScreen);
+            return;
+        }
+
+        const ctrl = new Controller(raidsData, SERVERS.JP);
+        ctrl.constructRaidsTable();
+        highlightNextGLBRaid();
+
+        // Hide loading screen after everything is ready
+        hideLoadingScreen(loadingScreen);
+
+    } catch (error) {
+        console.error('Error loading raids data:', error);
+        hideLoadingScreen(loadingScreen);
+    }
+
     document.body.addEventListener('scroll', handleTableHeaderSticky);
 });
+
+/**
+ * Hides the loading screen with a smooth fade out.
+ */
+const hideLoadingScreen = (loadingScreen) => {
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        // Remove from DOM after transition completes
+        setTimeout(() => {
+            loadingScreen.remove();
+        }, 500);
+    }
+};
 
 /**
  * Highlights the next upcoming GLB raid row and scrolls to it.
