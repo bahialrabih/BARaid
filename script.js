@@ -136,6 +136,7 @@ class Controller {
                     PathName: r.PathName,
                     Terrain: r.Terrain,
                     IconURL: (r.Boss_Portrait_EN0006_Lobby ?? `https://schaledb.com/images/raid/Boss_Portrait_${r.DevName}_Lobby`) + '.png',
+                    RaidLink: `https://schaledb.com/raid/${r.PathName}`
                 },
             ])
         );
@@ -176,8 +177,9 @@ class Controller {
                 GLBStatus: undefined,
                 Type: type,
             };
-            result.RaidNameWithIcon = createIconTextContainer(result.RaidName, result.RaidIconURL).outerHTML;
-            result.TypeWithIcon = createIconTextContainer(type, type === RAID_TYPES.GrandAssault ? DATA_URL.GACoinIcon : DATA_URL.TACoinIcon).outerHTML;
+            const raidLink = data.RaidDefinitions[season.RaidId].RaidLink;
+            result.RaidNameWithIcon = createIconTextContainer(result.RaidName, result.RaidIconURL, raidLink).outerHTML;
+            result.TypeWithIcon = createIconTextContainer(type, type === RAID_TYPES.GrandAssault ? DATA_URL.GACoinIcon : DATA_URL.TACoinIcon, null).outerHTML;
             result.Resources = genResourceInnerHtml(result);
             (() => {
                 if (server === SERVERS.GLB) return 'Yes';
@@ -281,7 +283,7 @@ const genResourceInnerHtml = season => {
  * @param {string} iconUrl - The URL of the icon image.
  * @returns {HTMLDivElement} A div element containing the icon and text.
  */
-const createIconTextContainer = (text, iconUrl) => {
+const createIconTextContainer = (text, iconUrl, linkUrl) => {
     const container = document.createElement('div');
     container.className = 'icon-text-container';
     const icon = document.createElement('img');
@@ -291,5 +293,12 @@ const createIconTextContainer = (text, iconUrl) => {
     const iconText = document.createElement('span');
     iconText.textContent = text;
     container.append(icon, iconText);
+    if (linkUrl) {
+        const link = document.createElement('a');
+        link.href = linkUrl;
+        link.target = '_blank';
+        link.append(container);
+        return link;
+    }
     return container;
 };
