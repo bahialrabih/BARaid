@@ -24,7 +24,7 @@ const SERVERS = Object.freeze({ JP: 0, GLB: 1 });
 const RESOURCES = [
     {
         hostname: 'www.souriki-border.com',
-        displayname: 'souriki-border',
+        displayname: 'Souriki-Border',
         constructRaidUrl: season => {
             const raidTypeInURI = (season.Type === RAID_TYPES.GrandAssault) ? 'decisive_battle' : 'total_assault';
             return `https://${RESOURCES[0].hostname}/${raidTypeInURI}/season/${season.SeasonDisplay}`;
@@ -32,7 +32,7 @@ const RESOURCES = [
     },
     {
         hostname: 'hina.loves.midokuni.com',
-        displayname: 'midokuni',
+        displayname: 'Midokuni',
         constructRaidUrl: season => {
             let raidTypeInURI = 'Raid';
             let seasonPath = season.SeasonDisplay;

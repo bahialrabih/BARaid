@@ -99,7 +99,7 @@ th {
 
 td {
     background: var(--bg-secondary);
-    color: var(--text-secondary);
+    color: var(--text-primary);
 }
 
 tr:hover td {
@@ -163,11 +163,12 @@ td[data-property-name="Resources"] a:hover {
 .glb-raid-info div {
     margin-bottom: 4px;
     font-size: 13px;
+    color: var(--text-primary);
 }
 
 .glb-raid-info div:last-child {
     margin-bottom: 0;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-size: 12px;
 }
 
@@ -228,12 +229,14 @@ td[data-property-name="GLBStatus"] {
     text-transform: uppercase;
     font-size: 11px;
     letter-spacing: 0.5px;
+    color: var(--text-primary);
 }
 
 /* Terrain styling */
 td[data-property-name="Terrain"] {
     font-weight: 500;
     text-transform: capitalize;
+    color: var(--text-primary);
 }
 
 /* Date styling */
@@ -242,12 +245,14 @@ td[data-property-name="EndFormatted"] {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 12px;
     font-weight: 500;
+    color: var(--text-primary);
 }
 
 /* Coming in days styling */
 td[data-property-name="DaysComesIn"],
 td[data-property-name="GlbDaysComesIn"] {
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 footer {
