@@ -209,8 +209,8 @@ td[data-property-name="RaidNameWithIcon"] .icon-text-container {
 td[data-property-name="RaidNameWithIcon"] .icon-text-container img.icon {
     width: auto;
     height: auto;
-    max-height: 120px;
-    max-width: 120px;
+    max-height: 200px;
+    max-width: 200px;
     object-fit: cover;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
@@ -364,8 +364,8 @@ table:focus-within {
         font-size: 15px;
     }
     td[data-property-name="RaidNameWithIcon"] .icon-text-container img.icon {
-        max-height: 104px;
-        max-width: 104px;
+        max-height: 170px;
+        max-width: 170px;
     }
 
     td[data-property-name="TypeWithIcon"] .icon-text-container img.icon {
@@ -384,8 +384,8 @@ table:focus-within {
         gap: 8px;
     }
     td[data-property-name="RaidNameWithIcon"] .icon-text-container img.icon {
-        max-height: 96px;
-        max-width: 96px;
+        max-height: 140px;
+        max-width: 140px;
     }
 
     td[data-property-name="TypeWithIcon"] .icon-text-container img.icon {
