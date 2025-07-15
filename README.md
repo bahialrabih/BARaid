@@ -1,5 +1,5 @@
 # BARaid
 
-## Live Server
+## Page URL
 
 https://bahialrabih.github.io/BARaid/
